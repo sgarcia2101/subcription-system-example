@@ -30,5 +30,5 @@ public class Subcription {
     private Boolean consent;
 
     @NonNull
-    private Newsletter newsletter;
+    private Long newsletterId;
 }

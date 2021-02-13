@@ -18,13 +18,12 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Newsletter;
-import domain.Subcription;
-import exception.SubcriptionBadRequestException;
-import exception.SubcriptionNotFoundException;
-import repository.SubcriptionNotificationRepository;
-import repository.SubcriptionRepository;
-import service.impl.SubcriptionServiceImpl;
+import com.sgarcia.subcription.domain.Subcription;
+import com.sgarcia.subcription.exception.SubcriptionBadRequestException;
+import com.sgarcia.subcription.exception.SubcriptionNotFoundException;
+import com.sgarcia.subcription.repository.SubcriptionNotificationRepository;
+import com.sgarcia.subcription.repository.SubcriptionRepository;
+import com.sgarcia.subcription.service.impl.SubcriptionServiceImpl;
 
 public class SubcriptionServiceImplTest {
 
@@ -41,8 +40,6 @@ public class SubcriptionServiceImplTest {
 
 	private Subcription sampleSubcription;
 
-	private Newsletter sampleNewsLetter;
-
 	@Before
 	public void setup() {
 		subcriptionRepository = mock(SubcriptionRepository.class);
@@ -50,16 +47,12 @@ public class SubcriptionServiceImplTest {
 
 		subcriptionServiceImpl = new SubcriptionServiceImpl(subcriptionRepository, subcriptionNotificationRepository);
 
-		sampleNewsLetter = Newsletter.builder()
-				.id(EXAMPLE_ID)
-				.name("Newsletter 1")
-				.build();
 
 		sampleSubcription = Subcription.builder()
 				.email("example@example.org")
 				.birthdate(LocalDate.now())
 				.consent(true)
-				.newsletter(sampleNewsLetter)
+				.newsletterId(EXAMPLE_ID)
 				.build();
 	}
 
@@ -85,7 +78,7 @@ public class SubcriptionServiceImplTest {
 		sampleSubcription.setId(EXAMPLE_ID);
 
 		// Do action
-		Subcription savedSubcription = subcriptionServiceImpl.save(sampleSubcription);
+		subcriptionServiceImpl.save(sampleSubcription);
 	}
 
 	@Test
