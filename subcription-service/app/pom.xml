@@ -35,10 +35,22 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 		
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+		    <version>${swagger.version}</version>
+        </dependency>
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency>
+		
 	    <dependency>
 	        <groupId>javax.xml.bind</groupId>
 	        <artifactId>jaxb-api</artifactId>
 	    </dependency>
+	    
 	    <dependency>
 		    <groupId>com.h2database</groupId>
 		    <artifactId>h2</artifactId>

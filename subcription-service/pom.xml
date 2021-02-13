@@ -38,6 +38,7 @@
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<h2.version>1.4.200</h2.version>
 		<jaxb-api.version>2.3.0</jaxb-api.version>
+		<swagger.version>2.9.2</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -98,6 +99,11 @@
 						<target>${java.version}</target>
 						<release>${java.version}</release>
 						<annotationProcessorPaths>
+                            <path>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-configuration-processor</artifactId>
+                                <version>${spring-boot.version}</version>
+                            </path>
 							<path>
 								<groupId>org.mapstruct</groupId>
 								<artifactId>mapstruct-processor</artifactId>
