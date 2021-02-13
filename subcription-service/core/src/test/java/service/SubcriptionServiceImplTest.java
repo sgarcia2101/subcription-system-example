@@ -21,8 +21,8 @@ import org.junit.Test;
 import com.sgarcia.subcription.domain.Subcription;
 import com.sgarcia.subcription.exception.SubcriptionBadRequestException;
 import com.sgarcia.subcription.exception.SubcriptionNotFoundException;
-import com.sgarcia.subcription.repository.SubcriptionNotificationRepository;
 import com.sgarcia.subcription.repository.SubcriptionRepository;
+import com.sgarcia.subcription.service.SubcriptionNotificationService;
 import com.sgarcia.subcription.service.impl.SubcriptionServiceImpl;
 
 public class SubcriptionServiceImplTest {
@@ -34,7 +34,7 @@ public class SubcriptionServiceImplTest {
 	private SubcriptionRepository subcriptionRepository;
 
 	// Mock
-	private SubcriptionNotificationRepository subcriptionNotificationRepository;
+	private SubcriptionNotificationService subcriptionNotificationRepository;
 
 	private static Long EXAMPLE_ID = 1L;
 
@@ -43,7 +43,7 @@ public class SubcriptionServiceImplTest {
 	@Before
 	public void setup() {
 		subcriptionRepository = mock(SubcriptionRepository.class);
-		subcriptionNotificationRepository = mock(SubcriptionNotificationRepository.class);
+		subcriptionNotificationRepository = mock(SubcriptionNotificationService.class);
 
 		subcriptionServiceImpl = new SubcriptionServiceImpl(subcriptionRepository, subcriptionNotificationRepository);
 
@@ -60,7 +60,7 @@ public class SubcriptionServiceImplTest {
 	public void test_save_ok() {
 		// Mock
 		when(subcriptionRepository.save(any(Subcription.class))).thenReturn(sampleSubcription);
-		doNothing().when(subcriptionNotificationRepository).sendNew(any(Subcription.class));
+		doNothing().when(subcriptionNotificationRepository).sendNotification(any(Subcription.class));
 
 		// Do action
 		Subcription savedSubcription = subcriptionServiceImpl.save(sampleSubcription);
@@ -69,7 +69,7 @@ public class SubcriptionServiceImplTest {
 		assertEquals(sampleSubcription, savedSubcription);
 
 		verify(subcriptionRepository, times(1)).save(sampleSubcription);
-		verify(subcriptionNotificationRepository, times(1)).sendNew(sampleSubcription);
+		verify(subcriptionNotificationRepository, times(1)).sendNotification(sampleSubcription);
 	}
 
 	@Test(expected = SubcriptionBadRequestException.class)

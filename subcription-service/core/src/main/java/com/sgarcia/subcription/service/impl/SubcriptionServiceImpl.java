@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.sgarcia.subcription.domain.Subcription;
 import com.sgarcia.subcription.exception.SubcriptionBadRequestException;
 import com.sgarcia.subcription.exception.SubcriptionNotFoundException;
-import com.sgarcia.subcription.repository.SubcriptionNotificationRepository;
 import com.sgarcia.subcription.repository.SubcriptionRepository;
+import com.sgarcia.subcription.service.SubcriptionNotificationService;
 import com.sgarcia.subcription.service.SubcriptionService;
 
 @Service
@@ -17,10 +17,10 @@ public class SubcriptionServiceImpl implements SubcriptionService {
 
 	private SubcriptionRepository subcriptionRepository;
 
-	private SubcriptionNotificationRepository notificationRepository;
+	private SubcriptionNotificationService notificationRepository;
 
 	public SubcriptionServiceImpl(SubcriptionRepository subcriptionRepository,
-			SubcriptionNotificationRepository notificationRepository) {
+			SubcriptionNotificationService notificationRepository) {
 		this.subcriptionRepository = subcriptionRepository;
 		this.notificationRepository = notificationRepository;
 	}
@@ -34,7 +34,7 @@ public class SubcriptionServiceImpl implements SubcriptionService {
 
 		Subcription savedSubcription = subcriptionRepository.save(subcription);
 
-		notificationRepository.sendNew(subcription);
+		notificationRepository.sendNotification(subcription);
 
 		return savedSubcription;
 	}

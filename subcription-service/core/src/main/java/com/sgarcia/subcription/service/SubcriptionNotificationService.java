@@ -1,9 +1,9 @@
-package com.sgarcia.subcription.repository;
+package com.sgarcia.subcription.service;
 
 import com.sgarcia.subcription.domain.Subcription;
 
-public interface SubcriptionNotificationRepository {
+public interface SubcriptionNotificationService {
 
-	public void sendNew(Subcription subcription);
+	public void sendNotification(Subcription subcription);
 	
 }
