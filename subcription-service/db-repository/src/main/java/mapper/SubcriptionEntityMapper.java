@@ -6,7 +6,7 @@ import domain.Subcription;
 import entity.SubcriptionEntity;
 
 @Mapper(componentModel = "spring")
-public interface SubcriptionMapper {
+public interface SubcriptionEntityMapper {
 
 	public SubcriptionEntity subcriptionToSubcriptioEntity(Subcription subcription);
 

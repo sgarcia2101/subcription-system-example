@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import domain.Subcription;
 import entity.SubcriptionEntity;
-import mapper.SubcriptionMapper;
+import mapper.SubcriptionEntityMapper;
 import repository.SubcriptionJpaRepository;
 import repository.SubcriptionRepository;
 
@@ -22,9 +22,9 @@ public class SubcriptionRepositoryImpl implements SubcriptionRepository {
 
 	SubcriptionJpaRepository subcriptionJpaRepository;
 	
-	SubcriptionMapper subcriptionMapper;
+	SubcriptionEntityMapper subcriptionMapper;
 	
-	public SubcriptionRepositoryImpl(SubcriptionJpaRepository subcriptionJpaRepository, SubcriptionMapper subcriptionMapper) {
+	public SubcriptionRepositoryImpl(SubcriptionJpaRepository subcriptionJpaRepository, SubcriptionEntityMapper subcriptionMapper) {
 		this.subcriptionJpaRepository = subcriptionJpaRepository;
 		this.subcriptionMapper = subcriptionMapper;
 	}

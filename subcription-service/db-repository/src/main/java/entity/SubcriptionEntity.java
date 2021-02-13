@@ -5,11 +5,15 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import domain.Gender;
 
 @Entity
 @Table(name = "subcription")
@@ -28,8 +32,9 @@ public class SubcriptionEntity implements Serializable {
 	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name = "gender")
-	private String gender;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
+	private Gender gender;
 
 	@NotNull
 	@Column(name = "birthdate", nullable = false)
@@ -67,11 +72,11 @@ public class SubcriptionEntity implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 

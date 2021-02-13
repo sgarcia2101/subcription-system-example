@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import domain.Subcription;
+import exception.SubcriptionBadRequestException;
 import exception.SubcriptionNotFoundException;
 import repository.SubcriptionNotificationRepository;
 import repository.SubcriptionRepository;
@@ -26,6 +27,10 @@ public class SubcriptionServiceImpl implements SubcriptionService {
 
 	@Override
 	public Subcription save(Subcription subcription) {
+		
+        if (subcription.getId() != null) {
+            throw new SubcriptionBadRequestException("A new subcription cannot already have an ID");
+        }
 
 		Subcription savedSubcription = subcriptionRepository.save(subcription);
 

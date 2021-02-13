@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import domain.Newsletter;
 import domain.Subcription;
+import exception.SubcriptionBadRequestException;
 import exception.SubcriptionNotFoundException;
 import repository.SubcriptionNotificationRepository;
 import repository.SubcriptionRepository;
@@ -76,6 +77,15 @@ public class SubcriptionServiceImplTest {
 
 		verify(subcriptionRepository, times(1)).save(sampleSubcription);
 		verify(subcriptionNotificationRepository, times(1)).sendNew(sampleSubcription);
+	}
+
+	@Test(expected = SubcriptionBadRequestException.class)
+	public void test_save_SubcriptionWithId() {
+		
+		sampleSubcription.setId(EXAMPLE_ID);
+
+		// Do action
+		Subcription savedSubcription = subcriptionServiceImpl.save(sampleSubcription);
 	}
 
 	@Test
