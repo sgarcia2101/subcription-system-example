@@ -6,34 +6,39 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import domain.Subcription;
+import exception.SubcriptionNotFoundException;
 import repository.SubcriptionNotificationRepository;
 import repository.SubcriptionRepository;
 import service.SubcriptionService;
 
 @Service
 public class SubcriptionServiceImpl implements SubcriptionService {
-	
+
 	private SubcriptionRepository subcriptionRepository;
-	
+
 	private SubcriptionNotificationRepository notificationRepository;
 
-    public SubcriptionServiceImpl(SubcriptionRepository subcriptionRepository, SubcriptionNotificationRepository notificationRepository) {
-        this.subcriptionRepository = subcriptionRepository;
-        this.notificationRepository = notificationRepository;
-    }
-    
+	public SubcriptionServiceImpl(SubcriptionRepository subcriptionRepository,
+			SubcriptionNotificationRepository notificationRepository) {
+		this.subcriptionRepository = subcriptionRepository;
+		this.notificationRepository = notificationRepository;
+	}
+
 	@Override
 	public Subcription save(Subcription subcription) {
-		
+
 		Subcription savedSubcription = subcriptionRepository.save(subcription);
-		
+
 		notificationRepository.sendNew(subcription);
-		
+
 		return savedSubcription;
 	}
 
 	@Override
 	public void delete(Long id) {
+		if (this.get(id).isEmpty()) {
+			throw new SubcriptionNotFoundException(id);
+		}
 		subcriptionRepository.delete(id);
 	}
 
