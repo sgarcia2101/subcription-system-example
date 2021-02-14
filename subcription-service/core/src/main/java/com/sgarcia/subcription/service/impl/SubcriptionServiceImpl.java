@@ -34,7 +34,7 @@ public class SubcriptionServiceImpl implements SubcriptionService {
 
 		Subcription savedSubcription = subcriptionRepository.save(subcription);
 
-		notificationRepository.sendNotification(subcription);
+		notificationRepository.sendNotification(savedSubcription);
 
 		return savedSubcription;
 	}

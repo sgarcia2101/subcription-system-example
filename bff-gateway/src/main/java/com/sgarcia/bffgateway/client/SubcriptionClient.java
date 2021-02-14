@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sgarcia.bffgateway.dto.SubcriptionDTO;
 
-@FeignClient(name = "subcription-service", url = "localhost:8081")
+@FeignClient(name = "subcription-service", url = "${subcription.url}")
 public interface SubcriptionClient {
 
 	@PostMapping("/api/subcriptions")
