@@ -23,7 +23,7 @@
 		<module>core</module>
 		<module>rest-api</module>
 		<module>db-repository</module>
-		<module>subcription-service-notification-adapter</module>
+		<module>notification-adapter</module>
 	</modules>
 
 	<properties>
