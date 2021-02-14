@@ -1,4 +1,4 @@
-package com.sgarcia.subcription.dto;
+package com.sgarcia.bffgateway.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.sgarcia.subcription.domain.Gender;
 
 public class SubcriptionDTO implements Serializable {
     
@@ -22,7 +21,7 @@ public class SubcriptionDTO implements Serializable {
 
     private String firstName;
 
-    private Gender gender;
+    private String gender;
 
     @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)  
@@ -59,11 +58,11 @@ public class SubcriptionDTO implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
