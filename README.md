@@ -50,6 +50,7 @@ BFF Gateway service is authenticated using **client_credentials** flow and subcr
 
 ![Oauth2 Authentication Diagram](oauth2_authentication.png)
 
+¡IMPORTANT!
 > In order to test it, you have to configure OAuth2 properties in BFF Gateway and Subcription Service with your own Okta properties.
 
 ## Requirements
@@ -75,6 +76,41 @@ In order to develop, you can start a Kafka broker using this command:
 And to stop it: 
 
 	docker-compose -f zk-single-kafka-single.yml down
+
+## HTTP REQUESTS Examples
+
+Create a subcription:
+
+	POST /api/subcriptions HTTP/1.1
+	Host: localhost:8080
+	Content-Type: application/json
+
+	{
+		"email": "example@example.org",
+		"firstName": "Example",
+		"gender": "MALE",
+		"birthdate": "2018-10-19",
+		"consent": true,
+		"newsletterId": 1
+	}
+
+Get a subcription:
+
+	GET /api/subcriptions/1 HTTP/1.1
+	Host: localhost:8080
+	Content-Type: application/json
+
+Get all subcriptions:
+
+	GET /api/subcriptions HTTP/1.1
+	Host: localhost:8080
+	Content-Type: application/json
+
+Remove an existing subcription
+
+	DELETE /api/subcriptions/1 HTTP/1.1
+	Host: localhost:8080
+	Content-Type: application/json
 
 ## Next steps
 
