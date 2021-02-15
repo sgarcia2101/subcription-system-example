@@ -9,13 +9,13 @@ Backend For Frontend microservice to be used by UI frontend.
 
 Routing to internal services is performed using Open Feign library.
 
-##### Endpoints:
+##### Endpoints (Accessible from external network):
 * _Create Subcription:_ `POST http://localhost:8080/api/subcriptions`
 * _Cancel Subcription:_ `DELETE http://localhost:8080/api/subcriptions/{id}`
 * _Get Subcription:_ `GET http://localhost:8080/api/subcriptions/{id}`
 * _Get all subcriptions:_ `GET http://localhost:8080/api/subcriptions`
 
-##### Swagger
+##### Swagger (Accessible from external network):
 * _Swagger-UI:_ `http://localhost:8080/swagger-ui.html`
 * _Swagger Api Docs:_ `http://localhost:8080/v2/api-docs`
 
@@ -29,13 +29,13 @@ This service is designed using Hexagonal-Architecture and Maven modules:
 * _rest-api:_ Adapter to expose REST endpoints
 * _notification-adapter:_ Adapter to send notifications using Kafka broker.
 
-##### Endpoints:
+##### Endpoints (Accessible from internal network):
 * _Create Subcription:_ `POST http://localhost:8081/api/subcriptions`
 * _Cancel Subcription:_ `DELETE http://localhost:8081/api/subcriptions/{id}`
 * _Get Subcription:_ `GET http://localhost:8081/api/subcriptions/{id}`
 * _Get all subcriptions:_ `GET http://localhost:8081/api/subcriptions`
 
-##### Swagger
+##### Swagger (Accessible from internal network):
 * _Swagger-UI:_ `http://localhost:8081/swagger-ui.html`
 * _Swagger Api Docs:_ `http://localhost:8081/v2/api-docs`
 
