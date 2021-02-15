@@ -7,7 +7,7 @@
 ### bff-gateway
 Backend For Frontend microservice to be used by UI frontend.
 
-Routing to internal services is performed using Open Feign library.
+Routing to internal services is performed using **Open Feign** library.
 
 ##### Endpoints (Accessible from external network):
 * _Create Subcription:_ `POST http://localhost:8080/api/subcriptions`
@@ -22,7 +22,7 @@ Routing to internal services is performed using Open Feign library.
 ### subcription-service
 Subcription service, exposing Create, Read and Delete REST endpoints.
 
-This service is designed using Hexagonal-Architecture and Maven modules:
+This service is designed using **Hexagonal-Architecture** and Maven modules:
 * _app:_ Module to build application containing all modules together.
 * _core:_ Domain module implementing subcription logic.
 * _db-repository:_ Adapter to store subcriptions in database.
@@ -40,7 +40,17 @@ This service is designed using Hexagonal-Architecture and Maven modules:
 * _Swagger Api Docs:_ `http://localhost:8081/v2/api-docs`
 
 ### mailing-service
-Mailing service reading events from Kafka broker. This service is a mock reading events and printing them in a log.
+Mailing service reading events from **Kafka broker**. This service is a mock reading events and printing them in a log.
+
+## Security - Oauth2 Authentication 
+
+I've implemented **Zero Trust Security** approach authenticating internal services using an Okta Oauth2 Identity Provider in order to authenticate internal resources.
+
+BFF Gateway service is authenticated using **client_credentials** flow and subcription_service **scope**, following this guide: [Secure Server-to-Server Communication with Spring Boot and OAuth 2.0 ](https://developer.okta.com/blog/2018/04/02/client-creds-with-spring-boot)
+
+![Oauth2 Authentication Diagram](oauth2_authentication.png)
+
+> In order to test it, you have to configure OAuth2 properties in BFF Gateway and Subcription Service with your own Okta properties.
 
 ## Requirements
 
@@ -68,7 +78,6 @@ And to stop it:
 
 ## Next steps
 
-* Implement Zero-Trust Security approach, authenticating services using an Identity Provider in order to authenticate internal resources.
 * Introduce Spring Cloud Netflix stack to provide Service Discovery, Circuit Breaking, routing and load balacing.
 * Implement a CI/CD pipeline.
 * Deploy in Kubernetes. 

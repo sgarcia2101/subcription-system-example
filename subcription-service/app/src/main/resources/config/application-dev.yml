@@ -24,3 +24,11 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
+security:
+  oauth2:
+    client:
+      clientId: REPLACE_WITH_YOUR_OWN_CLIENT_ID
+      clientSecret: REPLACE_WITH_YOUR_OWN_SECRET
+    resource:
+      tokenInfoUri: https://dev-55385541.okta.com/oauth2/default/v1/introspect
+

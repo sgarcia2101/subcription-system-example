@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+
+subcription:
+  url: localhost:8081
+  oauth2:
+    client:
+      grantType: client_credentials
+      clientId: REPLACE_WITH_YOUR_OWN_CLIENT_ID
+      clientSecret: REPLACE_WITH_YOUR_OWN_SECRET
+      accessTokenUri: https://dev-55385541.okta.com/oauth2/default/v1/token
+      scope: subcription_service
