@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import com.sgarcia.subcription.domain.Subcription;
 import com.sgarcia.subcription.entity.SubcriptionEntity;
+import com.sgarcia.subcription.exception.SubcriptionBadRequestException;
 import com.sgarcia.subcription.mapper.SubcriptionEntityMapper;
 import com.sgarcia.subcription.repository.SubcriptionJpaRepository;
 import com.sgarcia.subcription.repository.SubcriptionRepository;
@@ -35,7 +37,13 @@ public class SubcriptionRepositoryImpl implements SubcriptionRepository {
         
 		SubcriptionEntity entity = subcriptionMapper.subcriptionToSubcriptioEntity(subcription);
 		
-		SubcriptionEntity savedEntity = subcriptionJpaRepository.save(entity);
+		SubcriptionEntity savedEntity;
+		try {
+			savedEntity = subcriptionJpaRepository.save(entity);
+		} catch(DataIntegrityViolationException e){
+			log.error("Error saving subcription in DB: {}", entity, e);
+			throw new SubcriptionBadRequestException("Error saving subcription in DB");
+		}
 		
 		return subcriptionMapper.subcriptionEntityToSubcription(savedEntity);
 	}

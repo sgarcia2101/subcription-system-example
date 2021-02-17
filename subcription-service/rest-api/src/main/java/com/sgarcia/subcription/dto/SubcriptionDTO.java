@@ -11,6 +11,13 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.sgarcia.subcription.domain.Gender;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SubcriptionDTO implements Serializable {
     
 	private static final long serialVersionUID = -2030784308853756407L;

@@ -1,0 +1,34 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+    
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:subcription;DB_CLOSE_DELAY=-1
+    username: subcription
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+security:
+  oauth2:
+    client:
+      clientId: REPLACE_WITH_YOUR_OWN_CLIENT_ID
+      clientSecret: REPLACE_WITH_YOUR_OWN_SECRET
+    resource:
+      tokenInfoUri: https://dev-55385541.okta.com/oauth2/default/v1/introspect
+

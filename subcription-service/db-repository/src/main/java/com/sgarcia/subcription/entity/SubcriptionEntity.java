@@ -11,12 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import com.sgarcia.subcription.domain.Gender;
 
 @Entity
-@Table(name = "subcription")
+@Table(
+		name = "subcription",
+		uniqueConstraints = {@UniqueConstraint(columnNames = {"email", "newsletter_id"})})
 public class SubcriptionEntity implements Serializable {
 
 	private static final long serialVersionUID = 3137632651439675234L;
