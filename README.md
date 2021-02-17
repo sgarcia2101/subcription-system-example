@@ -51,7 +51,7 @@ BFF Gateway service is authenticated using **client_credentials** flow and subcr
 ![Oauth2 Authentication Diagram](oauth2_authentication.png)
 
 ¡IMPORTANT!
-> In order to test it, you have to configure OAuth2 properties in BFF Gateway and Subcription Service with your own Okta properties.
+> In order to test it, you have to configure OAuth2 properties in BFF Gateway and Subcription Service with your own Okta properties. To make it work in docker, put credentials in the .env file.
 
 ## Requirements
 

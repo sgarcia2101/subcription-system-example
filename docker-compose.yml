@@ -50,6 +50,8 @@ services:
     environment:
       - JAVA_TOOL_OPTIONS="-Xmx512m"
       - SUBCRIPTION_URL=subcription-service:8081
+      - SUBCRIPTION_OAUTH2_CLIENT_CLIENT-ID=${OKTA_CLIENT_ID}
+      - SUBCRIPTION_OAUTH2_CLIENT_CLIENT-SECRET=${OKTA_SECRET}
     depends_on:
       - subcription-service
 
@@ -64,6 +66,8 @@ services:
     environment:
       - JAVA_TOOL_OPTIONS="-Xmx512m"
       - SPRING_KAFKA_PRODUCER_BOOTSTRAP-SERVERS=kafka1:19092
+      - SECURITY_OAUTH2_CLIENT_CLIENT-ID=${OKTA_CLIENT_ID}
+      - SECURITY_OAUTH2_CLIENT_CLIENT-SECRET=${OKTA_SECRET}
     depends_on:
       - kafka1
 
